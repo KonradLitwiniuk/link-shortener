@@ -1,3 +1,9 @@
 spring:
   application:
     name: link-shortener
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/shortener"
+    username: "dev"
+    password: "dev"
+  jpa:
+    hibernate.ddl-auto: "update"
