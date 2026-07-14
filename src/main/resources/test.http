@@ -1,0 +1,6 @@
+POST http://localhost:8080/links
+Content-Type: application/json
+
+{
+  "url": "https://github.com/KonradLitwiniuk"
+}

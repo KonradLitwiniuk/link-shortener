@@ -7,3 +7,6 @@ spring:
     password: "dev"
   jpa:
     hibernate.ddl-auto: "update"
+    open-in-view: false
+app:
+  base-url: "http://localhost:8080/"
