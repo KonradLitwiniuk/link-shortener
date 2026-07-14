@@ -23,4 +23,9 @@ public class LinkService {
         String fullShortenUrl = baseUrl + randCode;
         return new CreateLinkResponse(fullShortenUrl, givenUrl);
     }
+    public String getOriginalUrl(String code){
+        return linkRepository.findByCode(code)
+                .orElseThrow(() -> new LinkNotFoundException(code))
+                .getUrl();
+    }
 }
