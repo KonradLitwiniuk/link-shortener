@@ -15,6 +15,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handelValidationException(MethodArgumentNotValidException ex)
     {
-        ex.getBindingResult().getFieldError()
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getBindingResult().getFieldError().getDefaultMessage());
     }
 }
