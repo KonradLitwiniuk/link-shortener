@@ -13,8 +13,13 @@ public class GlobalExceptionHandler {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ProblemDetail handelValidationException(MethodArgumentNotValidException ex)
+    public ProblemDetail handleValidationException(MethodArgumentNotValidException ex)
     {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getBindingResult().getFieldError().getDefaultMessage());
+    }
+    @ExceptionHandler(LinkCollisionException.class)
+    public ProblemDetail handleLinkCollisionException(LinkCollisionException ex)
+    {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 }
