@@ -51,6 +51,8 @@ public class LinkService {
         return linkRepository.getDailyClickCounts(code);
     }
     public LinkStats getLinkStats(String code){
+        linkRepository.findByCode(code)
+                .orElseThrow(() -> new LinkNotFoundException(code));
         List<DailyClickCount> dailyBreakdown = getDailyStats(code);
         long totalClicks = 0;
         for(DailyClickCount day : dailyBreakdown){

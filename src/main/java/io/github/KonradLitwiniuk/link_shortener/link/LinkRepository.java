@@ -18,6 +18,4 @@ public interface LinkRepository extends JpaRepository<Link, UUID> {
             "WHERE links.code = :code " +
             "GROUP BY (clicked_at AT TIME ZONE 'Europe/Warsaw')::date", nativeQuery = true)
     List<DailyClickCount> getDailyClickCounts(@Param("code") String code);
-    //@Query(value = "SELECT count(clicks.link_id) AS count, clicks.link_id  FROM clicks inner join links on clicks.link_id = links.id where links.code = :code group by clicks.link_id", nativeQuery = true)
-    LinkStats getLinkStats(@Param("code") String code);
 }
