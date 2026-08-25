@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class LinkService {
@@ -46,6 +47,16 @@ public class LinkService {
         saveClick(foundLink);
         return foundLink.getUrl();
     }
-
+    private List<DailyClickCount> getDailyStats(String code){
+        return linkRepository.getDailyClickCounts(code);
+    }
+    public LinkStats getLinkStats(String code){
+        List<DailyClickCount> dailyBreakdown = getDailyStats(code);
+        long totalClicks = 0;
+        for(DailyClickCount day : dailyBreakdown){
+            totalClicks += day.count();
+        }
+        return new LinkStats(totalClicks, dailyBreakdown);
+    }
 
 }
